@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        unordered_map<int, int> rank;
+        for (int i = 0; i < arr2.size(); i++) {
+            rank[arr2[i]] = i;
+        }
+        
+        sort(arr1.begin(), arr1.end(), [&](int a, int b) {
+            bool aInRank = rank.count(a);
+            bool bInRank = rank.count(b);
+            
+            if (aInRank && bInRank) {
+                return rank[a] < rank[b];
+            } else if (aInRank) {
+                return true; // a comes first
+            } else if (bInRank) {
+                return false; // b comes first
+            } else {
+                return a < b; // neither in arr2, sort by value
+            }
+        });
+        
+        return arr1;
+    }
+};
