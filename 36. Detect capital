@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        int n = word.size();
+        int capCount = 0;
+        
+        for (char c : word) {
+            if (isupper(c)) capCount++;
+        }
+        
+        if (capCount == 0 || capCount == n) return true; // all lower or all upper
+        
+        // otherwise, only valid case: exactly first letter capitalized, rest lower
+        return capCount == 1 && isupper(word[0]);
+    }
+};
