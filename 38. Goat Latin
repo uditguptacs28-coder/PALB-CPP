@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string toGoatLatin(string sentence) {
+        stringstream ss(sentence);
+        string word, result;
+        int index = 1;
+        
+        while (ss >> word) {
+            if (!result.empty()) result += " ";
+            
+            char first = word[0];
+            if (first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u' ||
+                first == 'A' || first == 'E' || first == 'I' || first == 'O' || first == 'U') {
+                result += word + "ma";
+            } else {
+                result += word.substr(1) + word[0] + "ma";
+            }
+            
+            result +=
